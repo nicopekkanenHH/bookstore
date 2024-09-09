@@ -10,12 +10,6 @@ import backend.com.bookstore.backend.repository.BookRepository;
 @Controller
 public class BookController {
 
-    @GetMapping("/index")
-    public String index(Model model) {
-       
-        model.addAttribute("title", "Welcome to the Bookstore");
-        return "index";
-    }
     @Autowired
     private BookRepository bookRepository;
     @GetMapping("/booklist")
