@@ -15,6 +15,7 @@
                     <th>Author</th>
                     <th>ISBN</th>
                     <th>Publication Year</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@
                     <td th:text="${book.publicationYear}"></td>
                     <td>
                         <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
+                        <a th:href="@{/editbook/{isbn}(isbn=${book.isbn})}" class="btn btn-warning">Edit</a>
                     </td>
                 </tr>
             </tbody>
