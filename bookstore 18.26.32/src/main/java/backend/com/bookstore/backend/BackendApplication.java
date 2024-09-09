@@ -15,7 +15,7 @@ public class BackendApplication {
 	@Bean
     public CommandLineRunner loadData(BookRepository repository) {
         return (args) -> {
-            // Add some example data to the database
+            
             repository.save(new Book("The Hobbit", "J.R.R. Tolkien", 1937, "978-0618968633", 25.99));
             repository.save(new Book("1984", "George Orwell", 1949, "978-0451524935", 19.99));
             repository.save(new Book("To Kill a Mockingbird", "Harper Lee", 1960, "978-0060935467", 15.99));
