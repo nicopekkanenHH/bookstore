@@ -7,7 +7,6 @@ import java.util.List;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private String id;
 
     private String name;
@@ -18,7 +17,8 @@ public class Category {
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(String id, String name) {
+        this.id = id;
         this.name = name;
     }
 

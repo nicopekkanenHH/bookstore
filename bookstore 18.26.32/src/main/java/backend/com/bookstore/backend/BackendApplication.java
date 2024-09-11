@@ -18,9 +18,9 @@ public class BackendApplication {
 	public CommandLineRunner loadData( CategoryRepository categoryRepository, BookRepository bookRepository) {
 		return (args) -> {
 
-			Category fiction = new Category("Fiction");
-			Category fantasy = new Category("Fantasy");
-			Category classic = new Category("Classic");
+			Category fiction = new Category("F1","Fiction");
+			Category fantasy = new Category("F2","Fantasy");
+			Category classic = new Category("F3","Classic");
 
 			categoryRepository.save(fiction);
 			categoryRepository.save(fantasy);
