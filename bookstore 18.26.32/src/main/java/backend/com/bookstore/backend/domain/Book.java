@@ -1,7 +1,7 @@
 package backend.com.bookstore.backend.domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
 
 @Entity
 public class Book {
@@ -11,7 +11,9 @@ public class Book {
     private String author;
     private int publicationYear;
     
-    private double price;
+    @ManyToOne
+    @JoinColumn(name = "category_id")  
+    private Category category;
 
     public Book() {
     }
@@ -21,10 +23,10 @@ public class Book {
         this.author = author;
         this.publicationYear = publicationYear;
         this.isbn = isbn;
-        this.price = price;
+        this.category = category;
     }
 
-    // Getters and Setters
+   
     public String getTitle() {
         return title;
     }
@@ -56,12 +58,12 @@ public class Book {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
-
-    public double getPrice() {
-        return price;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setCategory(Category category) {
+        this.category = category;
     }
+    
 }
