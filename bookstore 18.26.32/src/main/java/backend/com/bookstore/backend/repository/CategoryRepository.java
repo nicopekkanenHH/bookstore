@@ -1,5 +1,6 @@
 package backend.com.bookstore.backend.repository;
 import org.springframework.data.repository.CrudRepository;
-public interface CategoryRepository <Category, Long>{
+import backend.com.bookstore.backend.domain.Category;
+public interface CategoryRepository extends CrudRepository <Category, Long>{
 
 }
