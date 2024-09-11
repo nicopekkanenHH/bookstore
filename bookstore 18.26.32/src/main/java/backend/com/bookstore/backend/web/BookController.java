@@ -42,6 +42,7 @@ public class BookController {
         Book book = bookRepository.findById(isbn)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book ISBN: " + isbn));
         model.addAttribute("book", book);
+        model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
     }
     @PostMapping("/editbook")
