@@ -15,7 +15,7 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner loadData(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner loadData( CategoryRepository categoryRepository, BookRepository bookRepository) {
 		return (args) -> {
 
 			Category fiction = new Category("Fiction");
