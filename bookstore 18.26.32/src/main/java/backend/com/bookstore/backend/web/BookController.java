@@ -10,12 +10,17 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import backend.com.bookstore.backend.domain.Book;
 import backend.com.bookstore.backend.repository.BookRepository;
+import backend.com.bookstore.backend.repository.CategoryRepository;
 
 @Controller
 public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+
+     @Autowired
+    private CategoryRepository categoryRepository;
+    
     @GetMapping("/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
