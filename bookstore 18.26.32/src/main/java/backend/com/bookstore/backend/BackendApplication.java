@@ -3,10 +3,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import backend.com.bookstore.backend.domain.AppUser;
 import backend.com.bookstore.backend.domain.Book;
 import backend.com.bookstore.backend.domain.Category;
 import backend.com.bookstore.backend.repository.BookRepository;
 import backend.com.bookstore.backend.repository.CategoryRepository;
+import backend.com.bookstore.backend.repository.AppUserRepository;
+import java.util.Set;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -15,7 +19,10 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 	@Bean
-	public CommandLineRunner loadData( CategoryRepository categoryRepository, BookRepository bookRepository) {
+	public CommandLineRunner loadData( CategoryRepository categoryRepository, 
+	BookRepository bookRepository, 
+	AppUserRepository appUserRepository, 
+	PasswordEncoder passwordEncoder) {
 		return (args) -> {
 
 			Category fiction = new Category("F1","Fiction");
@@ -31,6 +38,14 @@ public class BackendApplication {
 			bookRepository.save(new Book("To Kill a Mockingbird", "Harper Lee", "978-0060935467", 1960, fiction));
 			bookRepository.save(new Book("The Catcher in the Rye", "J.D. Salinger", "978-0316769488", 1951, classic));
 			bookRepository.save(new Book("Pride and Prejudice", "Jane Austen", "978-0141040349", 1813, classic));
+
+			
+				Set<String> adminRoles = Set.of("ADMIN");
+				Set<String> userRoles = Set.of("USER");
+		
+				appUserRepository.save(new AppUser("admin", passwordEncoder.encode("admin"), "admin@example.com", adminRoles));
+            appUserRepository.save(new AppUser("user", passwordEncoder.encode("user"), "user@example.com", userRoles));
+			
 		};
 	}
     

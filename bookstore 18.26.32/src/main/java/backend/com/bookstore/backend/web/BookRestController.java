@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.security.access.prepost.PreAuthorize;
 
 
 @RestController
@@ -43,12 +43,14 @@ CategoryRepository categoryRepository;
         return bookRepository.findById(id).orElse(null);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping
     Book newBook(@RequestBody Book newBook){
         log.info("save new book" + newBook);
         return bookRepository.save(newBook);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
      @PutMapping("/{id}")
     public Book updateBook(@PathVariable String id, @RequestBody Book updatedBook) {
         log.info("Update book with ID: " + id);
@@ -56,6 +58,7 @@ CategoryRepository categoryRepository;
         return bookRepository.save(updatedBook);
     }
 
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("/{id}")
     public Iterable<Book> deleteBook(@PathVariable String id) {
         log.info("Delete book with ID: " + id);

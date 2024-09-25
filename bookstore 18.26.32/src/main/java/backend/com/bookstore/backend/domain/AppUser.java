@@ -1,10 +1,14 @@
 package backend.com.bookstore.backend.domain;
 
+import jakarta.persistence.CollectionTable;
+import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import java.util.Set;
 
 @Entity
 @Table(name = "app_users")  
@@ -17,18 +21,22 @@ public class AppUser {
     private String username;
     private String password;
     private String email;
-    private String role;
+    
+    @ElementCollection
+    @CollectionTable(name = "user_roles")
+    @Column(name = "role")
+    private Set<String> roles;
 
     
     public AppUser() {
     }
 
     
-    public AppUser(String username, String password, String email, String role) {
+    public AppUser(String username, String password, String email, Set<String> roles) {
         this.username = username;
         this.password = password;
         this.email = email;
-        this.role = role;
+        this.roles = roles;
     }
 
     
@@ -64,12 +72,12 @@ public class AppUser {
         this.email = email;
     }
 
-    public String getRole() {
-        return role;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     @Override
@@ -78,7 +86,7 @@ public class AppUser {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", email='" + email + '\'' +
-                ", role='" + role + '\'' +
+                ", roles='" + roles + '\'' +
                 '}';
     }
 }

@@ -7,6 +7,17 @@
 </head>
 <body>
     <div class="container mt-5">
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <p>Logged in as: <span th:text="${#httpServletRequest.remoteUser}"></span></p>
+            </div>
+            
+            <div class="col-md-6 text-end">
+                <form th:action="@{/logout}" method="post">
+                    <button type="submit" class="btn btn-secondary">Logout</button>
+                </form>
+            </div>
+        </div>
         <h2 class="mb-4">Books</h2>
         <table class="table table-striped">
             <thead>
@@ -28,13 +39,17 @@
                     <td th:text="${book.publicationYear}"></td>
                     <td th:text="${book.category.name}"></td>
                     <td>
+                        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
                         <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
                         <a th:href="@{/editbook/{isbn}(isbn=${book.isbn})}" class="btn btn-warning">Edit</a>
+                    </div>
                     </td>
                 </tr>
             </tbody>
         </table>
-        <a th:href="@{/addbook}" class="btn btn-success mb-3">Add Book</a>
+        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+            <a th:href="@{/addbook}" class="btn btn-success mb-3">Add Book</a>
+        </div>
     </div>
 </body>
 </html>
