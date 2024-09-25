@@ -9,7 +9,7 @@ import backend.com.bookstore.backend.domain.Category;
 import backend.com.bookstore.backend.repository.BookRepository;
 import backend.com.bookstore.backend.repository.CategoryRepository;
 import backend.com.bookstore.backend.repository.AppUserRepository;
-import java.util.Set;
+
 
 @SpringBootApplication
 public class BackendApplication {
@@ -38,13 +38,11 @@ public class BackendApplication {
 			bookRepository.save(new Book("The Catcher in the Rye", "J.D. Salinger", "978-0316769488", 1951, classic));
 			bookRepository.save(new Book("Pride and Prejudice", "Jane Austen", "978-0141040349", 1813, classic));
 
-			
-				Set<String> adminRoles = Set.of("ADMIN");
-				Set<String> userRoles = Set.of("USER");
-		
-				appUserRepository.save(new AppUser("admin","admin", "admin@example.com", adminRoles));
-            appUserRepository.save(new AppUser("user", "user", "user@example.com", userRoles));
-			
+			AppUser user1 = new AppUser("user", "user", "USER", "user@example.com");
+            AppUser user2 = new AppUser("admin", "admin", "ADMIN", "admin@example.com");
+
+            appUserRepository.save(user1);
+            appUserRepository.save(user2);
 		};
 	}
     
