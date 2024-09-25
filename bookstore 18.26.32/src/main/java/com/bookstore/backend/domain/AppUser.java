@@ -3,10 +3,14 @@ package backend.com.bookstore.backend.domain;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
+import jakarta.persistence.ElementCollection;
 
+import java.util.Set;
 
 @Entity(name = "users")
 public class AppUser {
@@ -22,13 +26,13 @@ public class AppUser {
     @Column(name = "password", nullable = false)
     private String password;
 
-    @Column(name = "role", nullable = false)
-    private String role;
+    
+    private Set<String> roles;
+
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -53,12 +57,12 @@ public class AppUser {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Set<String> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setRoles(Set<String> roles) {
+        this.roles = roles;
     }
 
     public String getEmail() {
@@ -70,10 +74,10 @@ public class AppUser {
     }
 
     
-    public AppUser(String username, String password, String role, String email) {
+    public AppUser(String username, String password, Set<String> roles, String email) {
         this.username = username;
         this.password = password;
-        this.role = role;
+        this.roles = roles;
         this.email = email;
     }
 
