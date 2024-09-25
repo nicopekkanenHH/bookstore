@@ -1,8 +1,6 @@
 package backend.com.bookstore.backend.domain;
 
-import jakarta.persistence.CollectionTable;
-import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
@@ -21,10 +19,6 @@ public class AppUser {
     private String username;
     private String password;
     private String email;
-    
-    @ElementCollection
-    @CollectionTable(name = "user_roles")
-    @Column(name = "role")
     private Set<String> roles;
 
     

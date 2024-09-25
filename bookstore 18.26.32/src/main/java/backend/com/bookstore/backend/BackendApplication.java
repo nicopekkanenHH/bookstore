@@ -3,7 +3,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import backend.com.bookstore.backend.domain.AppUser;
 import backend.com.bookstore.backend.domain.Book;
 import backend.com.bookstore.backend.domain.Category;
@@ -21,8 +20,8 @@ public class BackendApplication {
 	@Bean
 	public CommandLineRunner loadData( CategoryRepository categoryRepository, 
 	BookRepository bookRepository, 
-	AppUserRepository appUserRepository, 
-	PasswordEncoder passwordEncoder) {
+	AppUserRepository appUserRepository 
+	 ) {
 		return (args) -> {
 
 			Category fiction = new Category("F1","Fiction");
@@ -43,8 +42,8 @@ public class BackendApplication {
 				Set<String> adminRoles = Set.of("ADMIN");
 				Set<String> userRoles = Set.of("USER");
 		
-				appUserRepository.save(new AppUser("admin", passwordEncoder.encode("admin"), "admin@example.com", adminRoles));
-            appUserRepository.save(new AppUser("user", passwordEncoder.encode("user"), "user@example.com", userRoles));
+				appUserRepository.save(new AppUser("admin","admin", "admin@example.com", adminRoles));
+            appUserRepository.save(new AppUser("user", "user", "user@example.com", userRoles));
 			
 		};
 	}
