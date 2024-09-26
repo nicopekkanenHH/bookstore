@@ -1,4 +1,4 @@
-package backend.com.bookstore.backend.web;
+package com.bookstore.backend.web;
 
 
 import org.springframework.context.annotation.Bean;

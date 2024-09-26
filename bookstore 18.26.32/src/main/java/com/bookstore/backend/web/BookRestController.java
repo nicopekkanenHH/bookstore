@@ -1,8 +1,8 @@
-package backend.com.bookstore.backend.web;
+package com.bookstore.backend.web;
 
-import backend.com.bookstore.backend.domain.Book;
-import backend.com.bookstore.backend.repository.BookRepository;
-import backend.com.bookstore.backend.repository.CategoryRepository;
+import com.bookstore.backend.domain.Book;
+import com.bookstore.backend.repository.BookRepository;
+import com.bookstore.backend.repository.CategoryRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

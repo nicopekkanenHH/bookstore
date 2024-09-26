@@ -1,15 +1,11 @@
-package backend.com.bookstore.backend.domain;
+package com.bookstore.backend.domain;
 
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
-
 import java.util.Set;
 
 @Entity(name = "users")

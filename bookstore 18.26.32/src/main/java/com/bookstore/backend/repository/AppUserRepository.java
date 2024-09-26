@@ -1,8 +1,9 @@
-package backend.com.bookstore.backend.repository;
+package com.bookstore.backend.repository;
 
-import backend.com.bookstore.backend.domain.AppUser;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
+
+import com.bookstore.backend.domain.AppUser;
 
 @Repository
 public interface AppUserRepository extends CrudRepository<AppUser, Long> {

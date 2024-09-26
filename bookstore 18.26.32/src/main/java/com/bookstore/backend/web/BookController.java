@@ -1,4 +1,4 @@
-package backend.com.bookstore.backend.web;
+package com.bookstore.backend.web;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import backend.com.bookstore.backend.domain.Book;
-import backend.com.bookstore.backend.repository.BookRepository;
-import backend.com.bookstore.backend.repository.CategoryRepository;
+import com.bookstore.backend.domain.Book;
+import com.bookstore.backend.repository.BookRepository;
+import com.bookstore.backend.repository.CategoryRepository;
 
 @Controller
 public class BookController {
@@ -38,7 +38,7 @@ public class BookController {
         return "redirect:/booklist"; 
     }
     @GetMapping("/editbook/{isbn}")
-    public String showEditBookForm(@PathVariable("isbn") String isbn, Model model) {
+    public String showEditBookForm(@PathVariable String isbn, Model model) {
         Book book = bookRepository.findById(isbn)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid book ISBN: " + isbn));
         model.addAttribute("book", book);
@@ -51,7 +51,7 @@ public class BookController {
         return "redirect:/booklist"; 
     }
     @GetMapping("/deletebook/{isbn}")
-    public String deleteBook(@PathVariable("isbn") String isbn) {
+    public String deleteBook(@PathVariable String isbn) {
         bookRepository.deleteById(isbn); 
         return "redirect:/booklist"; 
     }

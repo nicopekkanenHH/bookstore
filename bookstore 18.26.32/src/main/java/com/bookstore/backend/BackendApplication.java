@@ -1,14 +1,16 @@
-package backend.com.bookstore.backend;
+package com.bookstore.backend;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import backend.com.bookstore.backend.domain.AppUser;
-import backend.com.bookstore.backend.domain.Book;
-import backend.com.bookstore.backend.domain.Category;
-import backend.com.bookstore.backend.repository.BookRepository;
-import backend.com.bookstore.backend.repository.CategoryRepository;
-import backend.com.bookstore.backend.repository.AppUserRepository;
+
+import com.bookstore.backend.domain.AppUser;
+
+import com.bookstore.backend.domain.Book;
+import com.bookstore.backend.domain.Category;
+import com.bookstore.backend.repository.BookRepository;
+import com.bookstore.backend.repository.CategoryRepository;
+import com.bookstore.backend.repository.AppUserRepository;
 import java.util.Set;
 
 @SpringBootApplication

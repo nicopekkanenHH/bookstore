@@ -1,4 +1,4 @@
-package backend.com.bookstore.backend.domain;
+package com.bookstore.backend.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

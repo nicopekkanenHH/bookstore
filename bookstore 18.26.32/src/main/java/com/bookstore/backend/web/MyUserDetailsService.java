@@ -1,13 +1,13 @@
-package backend.com.bookstore.backend.web;
+package com.bookstore.backend.web;
 
-import backend.com.bookstore.backend.domain.AppUser;
-import backend.com.bookstore.backend.repository.AppUserRepository;
+import com.bookstore.backend.repository.AppUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
+
+import com.bookstore.backend.domain.AppUser;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +18,6 @@ public class MyUserDetailsService implements UserDetailsService {
 
     private final AppUserRepository repository;
 
-    @Autowired
     public MyUserDetailsService(AppUserRepository appUserRepository) {
         this.repository = appUserRepository;
     }

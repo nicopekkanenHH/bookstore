@@ -1,4 +1,4 @@
-package backend.com.bookstore.backend.domain;
+package com.bookstore.backend.domain;
 
 import jakarta.persistence.*;
 import java.util.List;
