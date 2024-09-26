@@ -8,6 +8,7 @@ import com.bookstore.backend.domain.AppUser;
 
 import com.bookstore.backend.domain.Book;
 import com.bookstore.backend.domain.Category;
+import com.bookstore.backend.domain.Role;
 import com.bookstore.backend.repository.BookRepository;
 import com.bookstore.backend.repository.CategoryRepository;
 import com.bookstore.backend.repository.AppUserRepository;
@@ -16,7 +17,7 @@ import java.util.Set;
 @SpringBootApplication
 public class BackendApplication {
 
-	public static void main(String[] args) {
+		public static void main(String[] args) {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 	@Bean
@@ -40,8 +41,11 @@ public class BackendApplication {
 			bookRepository.save(new Book("The Catcher in the Rye", "J.D. Salinger", "978-0316769488", 1951, classic));
 			bookRepository.save(new Book("Pride and Prejudice", "Jane Austen", "978-0141040349", 1813, classic));
 
-			AppUser user1 = new AppUser("user", "user", Set.of("USER"), "user@example.com");
-            AppUser user2 = new AppUser("admin", "admin", Set.of("ADMIN"), "admin@example.com");
+			Role userRole = new Role("USER");
+        Role adminRole = new Role("ADMIN");
+
+			AppUser user1 = new AppUser("user", "user", Set.of(userRole), "user@example.com");
+            AppUser user2 = new AppUser("admin", "admin", Set.of(adminRole), "admin@example.com");
 
             appUserRepository.save(user1);
             appUserRepository.save(user2);

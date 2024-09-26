@@ -2,9 +2,14 @@ package com.bookstore.backend.domain;
 
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import java.util.Set;
 
@@ -22,13 +27,26 @@ public class AppUser {
     @Column(name = "password", nullable = false)
     private String password;
 
-    
-    private Set<String> roles;
-
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(
+        name = "user_roles",
+        joinColumns = @JoinColumn(name = "user_id"),
+        inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
 
+    public AppUser() {}
+
+    public AppUser(String username, String password, Set<Role> roles, String email) {
+        this.username = username;
+        this.password = password;
+        this.roles = roles;
+        this.email = email;
+    }
+    
     public Long getId() {
         return id;
     }
@@ -53,11 +71,11 @@ public class AppUser {
         this.password = password;
     }
 
-    public Set<String> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<String> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -68,15 +86,5 @@ public class AppUser {
     public void setEmail(String email) {
         this.email = email;
     }
-
     
-    public AppUser(String username, String password, Set<String> roles, String email) {
-        this.username = username;
-        this.password = password;
-        this.roles = roles;
-        this.email = email;
-    }
-
-    
-    public AppUser() {}
 }
