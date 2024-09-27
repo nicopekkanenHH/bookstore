@@ -4,8 +4,9 @@ import com.bookstore.backend.repository.AppUserRepository;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import java.util.Collections;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
 import com.bookstore.backend.domain.AppUser;
 
@@ -17,13 +18,15 @@ public class MyUserDetailsService implements UserDetailsService {
     private AppUserRepository repository;
 
 
-    @Override
+   @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AppUser appUser = repository.findByUsername(username);
-        UserDetails user = new org.springframework.security.core.userdetails.User(username, appUser.getPassword(), 
-        		AuthorityUtils.createAuthorityList(appUser.getRole()));
-        return user;
-    }   
+        AppUser appuser = repository.findByUsername(username);
+        if (appuser == null) {
+            throw new UsernameNotFoundException("User not found with username: " + username);
+        }
+        return new org.springframework.security.core.userdetails.User(appuser.getUsername(), appuser.getPassword(),
+                Collections.singletonList(new SimpleGrantedAuthority("ROLE_" + appuser.getRole())));
+    }
 
  
 }

@@ -3,6 +3,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.bookstore.backend.domain.AppUser;
 
@@ -41,12 +42,16 @@ public class BackendApplication {
 			bookRepository.save(new Book("Pride and Prejudice", "Jane Austen", "978-0141040349", 1813, classic));
 
 
-			AppUser user1 = new AppUser("user", "user", "ROLE_USER", "user@example.com");
-            AppUser user2 = new AppUser("admin", "admin", "ROLE_ADMIN", "admin@example.com");
+			BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+			AppUser user1 = new AppUser("user", passwordEncoder.encode("user"), "USER", "user@example.com");
+			AppUser user2 = new AppUser("admin", passwordEncoder.encode("admin"), "ADMIN", "admin@example.com");
 
             appUserRepository.save(user1);
             appUserRepository.save(user2);
 		};
 	}
-    
+    @Bean
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
 }

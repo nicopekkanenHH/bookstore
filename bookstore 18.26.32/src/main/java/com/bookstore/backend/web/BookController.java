@@ -21,22 +21,31 @@ public class BookController {
      @Autowired
     private CategoryRepository categoryRepository;
 
+    @GetMapping("/")
+    public String home() {
+        return "redirect:/booklist";
+    }
+
+
     @GetMapping("/booklist")
     public String bookList(Model model) {
         model.addAttribute("books", bookRepository.findAll());
         return "booklist";
     }
+    
      @GetMapping("/addbook")
     public String showAddBookForm(Model model) {
         model.addAttribute("book", new Book()); 
         model.addAttribute("categories", categoryRepository.findAll());
         return "addbook";
     }
+    
 @PostMapping("/addbook")
     public String addBook(@ModelAttribute Book book) {
         bookRepository.save(book); 
         return "redirect:/booklist"; 
     }
+    
     @GetMapping("/editbook/{isbn}")
     public String showEditBookForm(@PathVariable String isbn, Model model) {
         Book book = bookRepository.findById(isbn)
@@ -45,11 +54,14 @@ public class BookController {
         model.addAttribute("categories", categoryRepository.findAll());
         return "editbook";
     }
-    @PostMapping("/editbook")
-    public String editBook(@ModelAttribute Book book) {
+    
+    @PostMapping("/editbook/{isbn}")
+    public String editBook(@PathVariable String isbn, @ModelAttribute Book book) {
+        book.setIsbn(isbn);
         bookRepository.save(book); 
         return "redirect:/booklist"; 
     }
+    
     @GetMapping("/deletebook/{isbn}")
     public String deleteBook(@PathVariable String isbn) {
         bookRepository.deleteById(isbn); 

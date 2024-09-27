@@ -9,9 +9,8 @@
     <div class="container mt-5">
         <div class="row mb-3">
             <div class="col-md-6">
-                <p>Logged in as: <span th:text="${#httpServletRequest.remoteUser}"></span></p>
+                <p>Logged in as: <span th:text="${#authentication.name}"></span></p>
             </div>
-            
             <div class="col-md-6 text-end">
                 <form th:action="@{/logout}" method="post">
                     <button type="submit" class="btn btn-secondary">Logout</button>
@@ -41,7 +40,7 @@
                     <td>
                         <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                             <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
-                            <a th:href="@{/editbook/{isbn=${book.isbn}}}" class="btn btn-warning">Edit</a>
+                            <a th:href="@{/editbook/{isbn}(isbn=${book.isbn})}" class="btn btn-warning">Edit</a>
                         </div>
                     </td>
                 </tr>

@@ -8,7 +8,7 @@
 <body>
     <div class="container mt-5">
         <h2 class="mb-4">Edit Book</h2>
-        <form th:action="@{/editbook}" th:object="${book}" method="post">
+        <form th:action="@{/editbook/{isbn}(isbn=${book.isbn})}" th:object="${book}" method="post">
             <input type="hidden" th:field="*{isbn}" />
             <div class="mb-3">
                 <label for="title" class="form-label">Title</label>
