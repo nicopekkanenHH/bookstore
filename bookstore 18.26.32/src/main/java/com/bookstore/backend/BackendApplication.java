@@ -41,8 +41,8 @@ public class BackendApplication {
 			bookRepository.save(new Book("Pride and Prejudice", "Jane Austen", "978-0141040349", 1813, classic));
 
 
-			AppUser user1 = new AppUser("user", "user", "USER", "user@example.com");
-            AppUser user2 = new AppUser("admin", "admin", "ADMIN", "admin@example.com");
+			AppUser user1 = new AppUser("user", "user", "ROLE_USER", "user@example.com");
+            AppUser user2 = new AppUser("admin", "admin", "ROLE_ADMIN", "admin@example.com");
 
             appUserRepository.save(user1);
             appUserRepository.save(user2);
