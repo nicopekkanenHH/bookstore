@@ -36,6 +36,8 @@ public class SecurityConfig {
                 .permitAll() 
             )
             .logout(logout -> logout
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                .logoutSuccessUrl("/login?logout")
                 .permitAll() 
             )
                 .csrf(csrf -> csrf.disable()  

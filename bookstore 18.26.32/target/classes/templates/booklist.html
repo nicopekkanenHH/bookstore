@@ -39,7 +39,7 @@
                     <td th:text="${book.publicationYear}"></td>
                     <td th:text="${book.category.name}"></td>
                     <td>
-                        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
                             <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
                             <a th:href="@{/editbook/{isbn=${book.isbn}}}" class="btn btn-warning">Edit</a>
                         </div>
@@ -47,7 +47,7 @@
                 </tr>
             </tbody>
         </table>
-        <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+        <div th:if="${#authorization.expression('hasRole(''ADMIN'')')}">
             <a th:href="@{/addbook}" class="btn btn-success mb-3">Add Book</a>
         </div>
     </div>
