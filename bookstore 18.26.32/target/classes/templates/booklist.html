@@ -40,9 +40,9 @@
                     <td th:text="${book.category.name}"></td>
                     <td>
                         <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
-                        <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
-                        <a th:href="@{/editbook/{isbn}(isbn=${book.isbn})}" class="btn btn-warning">Edit</a>
-                    </div>
+                            <a th:href="@{/deletebook/{isbn}(isbn=${book.isbn})}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/editbook/{isbn=${book.isbn}}}" class="btn btn-warning">Edit</a>
+                        </div>
                     </td>
                 </tr>
             </tbody>
