@@ -7,7 +7,7 @@ RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
 COPY ["bookstore 18.26.32/src", "src"]
 RUN ./mvnw clean install -DskipTests
-RUN find ./target -type f -name '*.jar' -exec cp {} /opt/app/app.jar \; -quit
+RUN cp target/*.jar app.jar
 
 
 FROM eclipse-temurin:17-jre-alpine
