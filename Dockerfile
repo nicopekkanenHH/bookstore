@@ -1,10 +1,10 @@
 FROM eclipse-temurin:17-jdk-focal as builder
 WORKDIR /opt/app
-COPY bookstore18.26.32/.mvn/ .mvn/
-COPY bookstore18.26.32/mvnw bookstore18.26.32/pom.xml ./
+COPY bookstore 18.26.32/.mvn/ .mvn/
+COPY bookstore 18.26.32/mvnw bookstore 18.26.32/pom.xml ./
 RUN chmod +x ./mvnw
 RUN ./mvnw dependency:go-offline
-COPY bookstore18.26.32/src/ ./src/
+COPY bookstore 18.26.32/src/ ./src/
 RUN ./mvnw clean install -DskipTests
 RUN find ./target -type f -name '*.jar' -exec cp {} /opt/app/app.jar \; -quit
 
