@@ -10,6 +10,6 @@ RUN ./mvnw clean install -DskipTests
 RUN find ./target -type f -name 'backend.jar' -exec cp {} /opt/app/app.jar \; -quit
 
 FROM eclipse-temurin:17-jre-alpine
-COPY --from=builder /opt/app/backend.jar /opt/app/backend.jar
+COPY --from=builder /opt/app/backend-0.0.1-SNAPSHOT.jar /opt/app/backend.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/opt/app/backend.jar" ]
